@@ -1,0 +1,22 @@
+{
+  "name": "forgather",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leografx/-forgather.git"
+  },
+  "author": "Leo Martinez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/leografx/-forgather/issues"
+  },
+  "homepage": "https://github.com/leografx/-forgather#readme",
+  "dependencies": {
+    "pdfjs": "^2.1.0"
+  }
+}
