@@ -6,10 +6,17 @@ const path = require('path');
 PDFDocument = require('pdfkit');
 const gatherPath = 'forgather';
 
+if(process.argv[2] === 'prepare' || process.argv[2] === 'p' || process.argv[1] === 'index.js') {
+    prepareNow();
+}
+
+if(process.argv[2] === 'gather' || process.argv[2] === 'g') {
+    gatherNow();
+}
+
 function createTicket(fileName){
     let file = fileName.split('_');
     doc = new PDFDocument({ layout: 'portrait', size: [ 3.75 * 72, 2.25 * 72] });
-    
     // Labels 
     doc.fontSize(8);
     doc.text(`JOB#: `, 30, 20);
@@ -28,15 +35,6 @@ function createTicket(fileName){
     doc.end();  
 }
 
-if(process.argv[2] === 'prepare' || process.argv[2] === 'p') {
-    prepareNow();
-}
-
-if(process.argv[2] === 'gather' || process.argv[2] === 'g') {
-    gatherNow();
-}
-
-
 function prepareNow() {
     fs.readdir(gatherPath, function(err, items) {
         for (var i = 0; i < items.length; i++) {
@@ -50,7 +48,6 @@ function prepareNow() {
             if (file_name[0] != '.') {
                 generateBarCode (job_number, file_name);
                 fs.mkdir('gather/' + item_number, { recursive: true }, errorCreatingFolder);       
-                //mergePdf(file_name, item_number);
             }   
         }
     });
@@ -99,8 +96,6 @@ function mergePdf(file, item_number) {
         }
     });
 }
-
-
 
 function generateBarCode (job_number,file) {
     let barcodeCreated = false;
